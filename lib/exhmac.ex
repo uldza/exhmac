@@ -29,7 +29,7 @@ defmodule ExHMAC do
     }
   end
 
-  def validate_signature(signature, method, url, content, ts, secret) do
+  def validate_signature(signature, method, url, content, ts, secret) when is_binary(signature) do
     data = prepare_signature_data(method, url, content, ts)
     case sign(data, secret) do
       ^signature -> :valid
